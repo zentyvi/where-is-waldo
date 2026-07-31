@@ -8,11 +8,11 @@ if (!process.env["DATABASE_URL"]) {
 
 const CHAR_IMAGES = {
   waldo:
-    "https://res.cloudinary.com/dbbpyppam/image/upload/v1785493866/waldo.webp",
+    "https://res.cloudinary.com/dbbpyppam/image/upload/v1785494570/waldo_us8ycu.webp",
   wizard:
-    "https://res.cloudinary.com/dbbpyppam/image/upload/v1785493866/wizard.webp",
+    "https://res.cloudinary.com/dbbpyppam/image/upload/v1785494570/wizard_erku0k.webp",
   odlaw:
-    "https://res.cloudinary.com/dbbpyppam/image/upload/v1785493866/odlaw.webp",
+    "https://res.cloudinary.com/dbbpyppam/image/upload/v1785494570/odlaw_giecmx.webp",
   wenda:
     "https://res.cloudinary.com/dbbpyppam/image/upload/v1785494570/wenda_twwmqf.webp",
 };
@@ -31,6 +31,7 @@ async function main() {
   await prismaClient.level.create({
     data: {
       difficulty: "Easy",
+      name: "Level 1",
       imageUrl:
         "https://res.cloudinary.com/dbbpyppam/image/upload/v1785493866/level1_uemqwf.webp",
       characters: {
@@ -67,6 +68,7 @@ async function main() {
   await prismaClient.level.create({
     data: {
       difficulty: "Hard",
+      name: "Level 2",
       imageUrl:
         "https://res.cloudinary.com/dbbpyppam/image/upload/v1785493867/level2_gzkbyw.webp",
       characters: {
@@ -111,6 +113,7 @@ async function main() {
   await prismaClient.level.create({
     data: {
       difficulty: "Medium",
+      name: "Level 3",
       imageUrl:
         "https://res.cloudinary.com/dbbpyppam/image/upload/v1785493868/level3_n1jh9w.webp",
       characters: {
