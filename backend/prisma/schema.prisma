@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Level {
+  id         Int         @id @default(autoincrement())
+  difficulty Difficulty
+  imageUrl   String
+  characters Character[]
+  records    Record[]
+}
+
+model Character {
+  id       Int    @id @default(autoincrement())
+  name     String
+  imageUrl String
+  level    Level  @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  levelId  Int
+  x1       Float
+  x2       Float
+  y1       Float
+  y2       Float
+}
+
+model Player {
+  id      Int      @id @default(autoincrement())
+  name    String
+  email   String   @unique
+  records Record[]
+}
+
+model Record {
+  id        Int      @id @default(autoincrement())
+  time      Float
+  level     Level    @relation(fields: [levelId], references: [id], onDelete: Cascade)
+  levelId   Int
+  player    Player   @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  playerId  Int
+  createdAt DateTime @default(now())
+}
+
+enum Difficulty {
+  Easy
+  Medium
+  Hard
+}
