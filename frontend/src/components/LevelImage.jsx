@@ -82,7 +82,7 @@ function LevelImage({
 
   const clickMenu = (
     <div
-      className={`${style["click-menu"]} ${cordinates.percentcs.ydf >= 80 && style["overflow-y"]} ${cordinates.percentcs?.x >= 80 && style["overflow-x"]}`}
+      className={`${style["click-menu"]} ${cordinates.percentcs?.y >= 80 && style["overflow-y"]} ${cordinates.percentcs?.x >= 80 && style["overflow-x"]}`}
       style={{
         display: "flex",
         top: `${cordinates.pixels?.y}px`,
