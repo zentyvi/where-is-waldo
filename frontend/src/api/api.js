@@ -1,4 +1,4 @@
-const api_url = "http://localhost:3000";
+const api_url = "https://where-is-waldo-7iy3.onrender.com";
 
 async function getLevels() {
   const response = await fetch(`${api_url}/levels`);
