@@ -5,6 +5,7 @@ const levelsRoute = Router();
 
 levelsRoute.get("/", levelsController.levelsGet);
 levelsRoute.get("/:levelId", levelsController.levelById);
-levelsRoute.post("/:levelId", levelsController.checkAnswePost);
+levelsRoute.post("/:levelId", levelsController.checkAnswerPost);
+levelsRoute.post("/:levelId/records", levelsController.levelRecordsPost);
 
 export default levelsRoute;

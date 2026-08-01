@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getLevels } from "../api/api";
 import Loader from "../components/Loader";
 import LevelCard from "../components/LevelCard";
+import style from "../styles/pages/HomePage.module.css";
 
 function HomePage() {
   const [levels, setLevels] = useState([]);
@@ -27,10 +28,12 @@ function HomePage() {
   }
 
   return (
-    <main>
-      {levels.map((l) => (
-        <LevelCard key={l.id} level={l} />
-      ))}
+    <main className="main">
+      <div className={style["levels-grid"]}>
+        {levels.map((l) => (
+          <LevelCard key={l.id} level={l} />
+        ))}
+      </div>
     </main>
   );
 }

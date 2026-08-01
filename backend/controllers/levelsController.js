@@ -36,6 +36,7 @@ async function levelById(req, res, next) {
           },
         },
         records: {
+          take: 20,
           select: {
             id: true,
             time: true,
@@ -47,7 +48,7 @@ async function levelById(req, res, next) {
             createdAt: true,
           },
           orderBy: {
-            time: "desc",
+            time: "asc",
           },
         },
       },
@@ -63,7 +64,7 @@ async function levelById(req, res, next) {
   }
 }
 
-async function checkAnswePost(req, res, next) {
+async function checkAnswerPost(req, res, next) {
   try {
     const { levelId } = req.params;
     const { characterId, cordinates } = req.body;
@@ -107,10 +108,57 @@ async function checkAnswePost(req, res, next) {
   }
 }
 
+async function levelRecordsPost(req, res, next) {
+  try {
+    const { time, username, email } = req.body;
+    const { levelId } = req.params;
+
+    const level = await prismaClient.level.findFirst({
+      where: {
+        id: parseInt(levelId),
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (!level) {
+      return res.status(404).json({ message: "Leven not found" });
+    }
+
+    const record = await prismaClient.record.create({
+      data: {
+        time: parseFloat(time),
+        level: {
+          connect: {
+            id: parseInt(levelId),
+          },
+        },
+        player: {
+          connectOrCreate: {
+            where: {
+              email,
+            },
+            create: {
+              email,
+              name: username,
+            },
+          },
+        },
+      },
+    });
+
+    return res.status(200).json({ message: "Succeed" });
+  } catch (err) {
+    next(err);
+  }
+}
+
 const levelsController = {
   levelsGet,
   levelById,
-  checkAnswePost,
+  checkAnswerPost,
+  levelRecordsPost,
 };
 
 export default levelsController;

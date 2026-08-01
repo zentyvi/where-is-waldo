@@ -1,38 +1,45 @@
 import { useEffect } from "react";
+import style from "../styles/components/LevelHeader.module.css";
 
-function LevelHeader({ level, time, setTime, clicks }) {
+function LevelHeader({ level, time, setTime, clicks, isRunning }) {
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTime((t) => t + 0.1);
-    }, 100);
+    const intervalId = isRunning
+      ? setInterval(() => {
+          setTime((t) => t + 0.1);
+        }, 100)
+      : 0;
 
     return () => clearInterval(intervalId);
-  }, [setTime]);
+  }, [setTime, isRunning]);
 
   const accuracy = Math.round((clicks.correct / clicks.total) * 100) || 100;
 
+  const stats = [
+    { title: "Time", content: `${time.toFixed(1)}s` },
+    { title: "Wrong clicks", content: clicks.total - clicks.correct },
+    { title: "Total clicks", content: clicks.total },
+    { title: "Accuracy", content: `${accuracy}%` },
+  ];
+
   return (
-    <header>
-      <div>
-        <h2>
-          {level.name} | <span>{level.difficulty}</span>
+    <header className={style["level-header"]}>
+      <div className={style["title-wrapper"]}>
+        <h2 className={style.title}>
+          {level.name}
+          <span className={`difficulty ${level.difficulty.toLowerCase()}`}>
+            {level.difficulty}
+          </span>
         </h2>
       </div>
-      <div>
-        <span>Time</span>
-        <strong>{time.toFixed(1)}s</strong>
-      </div>
-      <div>
-        <span>Wrong clicks</span>
-        <strong>{clicks.total - clicks.correct}</strong>
-      </div>
-      <div>
-        <span>Total clicks</span>
-        <strong>{clicks.total}</strong>
-      </div>
-      <div>
-        <span>Accuracy</span>
-        <strong>{accuracy}%</strong>
+      <div className={style["stats-wrapper"]}>
+        <div className={style["stats-inner"]}>
+          {stats.map((s) => (
+            <div className={style["stat-box"]} key={s.title}>
+              <span className={style["stat__title"]}>{s.title}</span>
+              <strong className={style["stat__body"]}>{s.content}</strong>
+            </div>
+          ))}
+        </div>
       </div>
     </header>
   );

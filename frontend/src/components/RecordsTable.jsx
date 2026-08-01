@@ -1,5 +1,7 @@
+import style from "../styles/components/RecordsTable.module.css";
+
 function RecordsTable({ records }) {
-  const rows = records.map((r, index) => {
+  const rows = records.map((r, index) => (
     <tr key={r.id}>
       <th scope="row">{index + 1}</th>
       <td>{r.player.name}</td>
@@ -11,12 +13,12 @@ function RecordsTable({ records }) {
           year: "numeric",
         })}
       </td>
-    </tr>;
-  });
+    </tr>
+  ));
 
   return (
-    <section>
-      <table>
+    <section className={style["leaderboard-section"]}>
+      <table className={style["leaderboard-table"]}>
         <caption>Leaderboard</caption>
         <thead>
           <tr>

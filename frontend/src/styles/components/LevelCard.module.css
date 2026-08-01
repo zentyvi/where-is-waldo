@@ -1,0 +1,60 @@
+.level-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-secondary);
+  border-radius: 1.2rem;
+  overflow: hidden;
+  box-shadow: 1px 1px 2px 0px #0d0d0d2b;
+  transition: transform 0.3s ease;
+}
+
+.level-card:hover {
+  transform: translateY(-2%);
+}
+
+.card__image {
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+.card__body {
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.card__meta {
+  display: flex;
+  justify-content: center;
+}
+
+.card__title-wrapper {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.card__characters {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.card__portrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.card__portrait img {
+  width: 28px;
+  height: auto;
+  object-fit: contain;
+}
+
+.card__portrait span {
+  font-size: var(--font-size-sm);
+}

@@ -39,4 +39,21 @@ async function checkAnswer(levelId, characterId, cordinates) {
   return result;
 }
 
-export { getLevels, getLevelById, checkAnswer };
+async function createRecord(levelId, data) {
+  const response = await fetch(`${api_url}/levels/${levelId}/records`, {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error during creating a record");
+  }
+
+  const result = await response.json();
+  return result;
+}
+
+export { getLevels, getLevelById, checkAnswer, createRecord };
