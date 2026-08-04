@@ -32,8 +32,13 @@ One of the main challenges of this project was ensuring that character positions
 2. The raw pixel coordinates of the click relative to the image element are extracted.
 3. These pixel coordinates are converted into **percentages** relative to the width and height of the displayed image:
 
-   $$\text{X}_{\% } = \left(\frac{\text{clickX}}{\text{imageWidth}}\right) \times 100$$
-   $$\text{Y}_{\% } = \left(\frac{\text{clickY}}{\text{imageHeight}}\right) \times 100$$
+```math
+   X_{\%} = \left(\frac{\text{clickX}}{\text{imageWidth}}\right) \times 100
+```
+
+```math
+Y_{\%} = \left(\frac{\text{clickY}}{\text{imageHeight}}\right) \times 100
+```
 
 4. The percentage-based coordinates are sent to the Node.js backend to check if they fall within the predefined target box for the selected character.
 5. Upon successful validation, a **color-coded marker** (assigned specifically to that character) is rendered at the clicked position to highlight the find.
