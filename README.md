@@ -2,6 +2,7 @@
 
 A full-stack photo tagging application inspired by the classic _"Where's Waldo?"_ books. Built as a project for [The Odin Project's](https://www.theodinproject.com/lessons/nodejs-where-s-waldo-a-photo-tagging-app) NodeJS curriculum.
 
+live preview: [whereisthatwaldo.netlify.app](https://whereisthatwaldo.netlify.app)
 ---
 
 ## ✨ Features
